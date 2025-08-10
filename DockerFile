@@ -1,0 +1,19 @@
+# Use Node.js LTS
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy file package and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy all project files
+COPY . .
+
+
+# Expose port cho Directus
+EXPOSE 8055
+
+# Start Directus
+CMD ["npx", "directus", "start"]
